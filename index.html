@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Проектная работа 3 на Яндекс Практикуме">
+  <meta name="keywords" content="html, css, js">
+  <meta name="author" content="Артур Максименко">
+
+  <link rel="stylesheet" href="./page/index.css">
+  <title>Место</title>
+
+</head>
+<body class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/header/logo.svg" alt="логотип сайт место">
+    </header>
+
+    <main class="content">
+      <section class="profile">
+        <div class="profile__info">
+          <img class="profile__avatar" src="./images/profile/image.png" alt="фотография пользователя">
+          <div class="profile__description">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <span class="profile__post">Исследователь океана</span>
+            <span class="profile__edit"></span>
+          </div>
+        </div>
+        <span class="profile__add"></span>
+      </section>
+
+      <section class="elements">
+        <ul class="element">
+          <li class="element__item">
+            <img  class="element__img" src="./images/elements/church.jpg" alt="старая церковь">
+            <div class="element__description">
+              <h2 class="element__title" >Карачаевск</h2>
+              <span class="element__like"></span>
+            </div>
+          </li>
+          <li class="element__item">
+            <img class="element__img" src="./images/elements/sunset.jpg" alt="красивый закат">
+            <div class="element__description">
+              <h2 class="element__title" >Гора Эльбрус</h2>
+              <span class="element__like"></span>
+            </div>
+          </li>
+          <li class="element__item">
+            <img class="element__img" src="./images/elements/mountains.jpg" alt="высокие горы">
+            <div class="element__description">
+              <h2 class="element__title" >Домбай</h2>
+              <span class="element__like"></span>
+            </div>
+          </li>
+          <li class="element__item">
+            <img class="element__img" src="./images/elements/sunset.jpg" alt="закат">
+            <div class="element__description">
+              <h2 class="element__title" >Гора Эльбрус</h2>
+              <span class="element__like"></span>
+            </div>
+          </li>
+          <li class="element__item">
+            <img class="element__img" src="./images/elements/mountains.jpg" alt="горы">
+            <div class="element__description">
+              <h2 class="element__title" >Домбай</h2>
+              <span class="element__like"></span>
+            </div>
+          </li>
+          <li class="element__item">
+            <img class="element__img" src="./images/elements/church.jpg" alt="старая церковь у подножья горы">
+            <div class="element__description">
+              <h2 class="element__title" >Карачаево-Ч...</h2>
+              <span class="element__like"></span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p class="footer__autop">&copy; 2021 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__shadow"></div>
+      <div class="popup__modal">
+        <form class="popup__form" action="">
+          <span class="popup__close"></span>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <fieldset class="popup__input-container">
+            <label class="popup__label" for="name">
+              <input class="popup__input popup__input-name" type="text" id="name" value="" placeholder="введите имя ...">
+            </label>
+            <label class="popup__label" for="post">
+              <input class="popup__input popup__input-post" type="text" id="post" value="" placeholder="введите должность ...">
+            </label>
+          </fieldset>
+          <fieldset class="popup__input-container">
+            <input class="popup__save" type="submit" value="Сохранить">
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <script src="./js/index.js"></script>
+</body>
+</html>

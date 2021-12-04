@@ -1,0 +1,17 @@
+.profile__post {
+  display: block;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 720px) {
+  .profile__post {
+    margin-top: 14px;
+
+  }
+}

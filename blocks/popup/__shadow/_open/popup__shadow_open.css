@@ -1,0 +1,4 @@
+.popup__shadow_open {
+  display: block;
+  opacity: 0.5;
+}
