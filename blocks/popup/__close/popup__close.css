@@ -7,6 +7,8 @@
   right: -36px;
   cursor: pointer;
   transition: .3s ease-in-out;
+  background-size: cover;
+  background-position: center;
 }
 
 .popup__close:hover {
@@ -15,7 +17,9 @@
 
 @media screen and (max-width: 620px) {
   .popup__close {
-    top: -52px;
+    width: 20px;
+    height: 20px;
+    top: -36px;
     right: 0;
   }
 }

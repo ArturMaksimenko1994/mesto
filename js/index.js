@@ -1,7 +1,7 @@
 // ----------popup----------
 let page = document.querySelector(".page");
 let popupModal = document.querySelector(".popup__modal");
-let popupShadow = document.querySelector(".popup__shadow");
+let popup = document.querySelector(".popup");
 let profileEdit = document.querySelector(".profile__edit");
 let popupClose = document.querySelector(".popup__close");
 // ----------editing a profile----------
@@ -15,18 +15,18 @@ let popupSave = document.querySelector(".popup__save");
 
 function openPopup() {
   popupModal.classList.add("popup__modal_open");
-  popupShadow.classList.add("popup__shadow_open");
+  popup.classList.add("popup_open");
   popupInputName.value = profileName.textContent;
   popupInputPost.value = profilePost.textContent;
 }
 
 function exitPopup() {
   popupModal.classList.remove("popup__modal_open");
-  popupShadow.classList.remove("popup__shadow_open");
+  popup.classList.remove("popup_open");
 }
 
 window.onclick = function (event) {
-  if (event.target === popupShadow) {
+  if (event.target === popup) {
     exitPopup();
   }
 }
