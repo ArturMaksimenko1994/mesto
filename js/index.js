@@ -1,5 +1,4 @@
 // ----------popup----------
-let page = document.querySelector(".page");
 let popupModal = document.querySelector(".popup__modal");
 let popup = document.querySelector(".popup");
 let profileEdit = document.querySelector(".profile__edit");
@@ -8,36 +7,37 @@ let popupClose = document.querySelector(".popup__close");
 let popupForm = document.querySelector(".popup__form");
 let profileName = document.querySelector(".profile__name");
 let profilePost = document.querySelector(".profile__post");
-let popupInputName = document.querySelector(".popup__input-name");
-let popupInputPost = document.querySelector(".popup__input-post");
-let popupSave = document.querySelector(".popup__save");
+let popupInputName = document.querySelector(".popup__input_text_name");
+let popupInputPost = document.querySelector(".popup__input_text_post");
 
-
+// функция открывает попап и забирает значения profile__name и profile__post
 function openPopup() {
-  popupModal.classList.add("popup__modal_open");
   popup.classList.add("popup_open");
   popupInputName.value = profileName.textContent;
   popupInputPost.value = profilePost.textContent;
 }
 
+//выход из popup
 function exitPopup() {
-  popupModal.classList.remove("popup__modal_open");
   popup.classList.remove("popup_open");
 }
 
+//выход по клику вне окна popup
 window.onclick = function (event) {
   if (event.target === popup) {
     exitPopup();
   }
 }
 
+//присваиваем новые значения profile__name и profile__post
 function formSubmitHandler(evt){
-  evt.preventDefault();
+  evt.preventDefault(); //отмена дефолтной отправки формы
   profileName.textContent = popupInputName.value;
   profilePost.textContent = popupInputPost.value;
   exitPopup();
 }
 
+//при клике запускаем собития
 popupForm.addEventListener('submit', formSubmitHandler);
 popupClose.addEventListener('click', exitPopup);
 profileEdit.addEventListener("click", openPopup);
