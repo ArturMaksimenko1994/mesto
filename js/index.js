@@ -60,7 +60,7 @@ window.onclick = function (event) {
 let popupAdd = document.querySelector(".popup_add");
 let popupFormAdd = document.querySelector(".popup__form_add");
 let profileAdd = document.querySelector(".profile__add");
-let popupAddExit = document.querySelector(".popup_add_exit");
+let popupAddExit = document.querySelector(".popup__close_add");
 let popupSaveAdd = document.querySelector(".popup__save_add");
 
 function openModalLink() {
@@ -101,7 +101,7 @@ const popupInputLinkSrc = document.querySelector('.popup__input_link_src');
 
 // --------------------popup-image--------------------
 const popupImage = document.querySelector(".popup_image");
-const popupImageExit = document.querySelector(".popup_image_exit");
+const popupImageExit = document.querySelector(".popup__close_image");
 const popupPicture = document.querySelector(".popup__picture");
 const popupText = document.querySelector(".popup__text");
 
