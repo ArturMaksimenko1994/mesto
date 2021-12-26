@@ -78,7 +78,7 @@ popupAddExit.addEventListener('click', openModalLinkExit);
 
 
 // Обработчик «отправки» формы:
-function formPopupAdd (evt) {
+function addPopupForm (evt) {
   evt.preventDefault(); //отмена дефолтной отправки формы
   prependAddCard(popupInputLinkNname.value, popupInputLinkSrc.value)
   exitModalPopup(popupAdd);
@@ -88,7 +88,7 @@ function formPopupAdd (evt) {
 }
 
 //при клике запускаем собития формы добавления
-popupFormAdd.addEventListener('submit', formPopupAdd);
+popupFormAdd.addEventListener('submit', addPopupForm);
 
 
 // -------------------CARD-------------------
