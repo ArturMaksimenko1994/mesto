@@ -1,13 +1,13 @@
 // --------------------popup-edit--------------------
-let popupEdit = document.querySelector(".popup_edit");
-let profileEdit = document.querySelector(".profile__edit");
-let popupClose = document.querySelector(".popup__close");
-let popupFormEdit = document.querySelector(".popup__form_edit");
-let profileName = document.querySelector(".profile__name");
-let profilePost = document.querySelector(".profile__post");
+const popupEdit = document.querySelector(".popup_edit");
+const profileEdit = document.querySelector(".profile__edit");
+const popupClose = document.querySelector(".popup__close");
+const popupFormEdit = document.querySelector(".popup__form_edit");
+const profileName = document.querySelector(".profile__name");
+const profilePost = document.querySelector(".profile__post");
 // получаем input popup-edit
-let popupInputName = document.querySelector(".popup__input_text_name");
-let popupInputPost = document.querySelector(".popup__input_text_post");
+const popupInputName = document.querySelector(".popup__input_text_name");
+const popupInputPost = document.querySelector(".popup__input_text_post");
 
 
 //открытие popup
@@ -38,14 +38,14 @@ popupClose.addEventListener('click', clickClosedModal)
 
 
 //присваиваем новые значения profile__name и profile__post
-function formPopupEdit(evt){
+function openPopupEdit(evt){
   evt.preventDefault(); //отмена дефолтной отправки формы
   profileName.textContent = popupInputName.value;
   profilePost.textContent = popupInputPost.value;
   exitModalPopup(popupEdit);
 }
 //при клике запускаем собития формы
-popupFormEdit.addEventListener('submit', formPopupEdit);
+popupFormEdit.addEventListener('submit', openPopupEdit);
 
 
 //выход по клику вне окна popup
@@ -57,11 +57,13 @@ window.onclick = function (event) {
 
 
 // --------------------popup-add--------------------
-let popupAdd = document.querySelector(".popup_add");
-let popupFormAdd = document.querySelector(".popup__form_add");
-let profileAdd = document.querySelector(".profile__add");
-let popupAddExit = document.querySelector(".popup__close_add");
-let popupSaveAdd = document.querySelector(".popup__save_add");
+const popupAdd = document.querySelector(".popup_add");
+const popupFormAdd = document.querySelector(".popup__form_add");
+const profileAdd = document.querySelector(".profile__add");
+const popupAddExit = document.querySelector(".popup__close_add");
+const popupSaveAdd = document.querySelector(".popup__save_add");
+const elementСard = document.querySelector(".element__card").content;
+
 
 function openModalLink() {
   openPopup(popupAdd);
@@ -78,15 +80,11 @@ popupAddExit.addEventListener('click', openModalLinkExit);
 // Обработчик «отправки» формы:
 function formPopupAdd (evt) {
   evt.preventDefault(); //отмена дефолтной отправки формы
-
   prependAddCard(popupInputLinkNname.value, popupInputLinkSrc.value)
-
   exitModalPopup(popupAdd);
-
   //очищаем
   popupInputLinkNname.value = '';
   popupInputLinkSrc.value = '';
-
 }
 
 //при клике запускаем собития формы добавления
@@ -105,11 +103,11 @@ const popupImageExit = document.querySelector(".popup__close_image");
 const popupPicture = document.querySelector(".popup__picture");
 const popupText = document.querySelector(".popup__text");
 
-function PopupImg() {
+function closePopupImg() {
 	exitModalPopup(popupImage);
 }
 
-popupImageExit.addEventListener('click', PopupImg);
+popupImageExit.addEventListener('click', closePopupImg);
 //массив из спринта 6 карточек
 const initialCards = [
   {
@@ -144,7 +142,6 @@ initialCards.forEach ((e) => {
 });
 
 function creatingСard(name, link) {
-  const elementСard = document.querySelector(".element__card").content;
   const elementClone = elementСard.querySelector(".element__item").cloneNode(true);
   const elementImg = elementClone.querySelector(".element__img");
   const elementTitle = elementClone.querySelector(".element__title");
@@ -156,13 +153,13 @@ function creatingСard(name, link) {
   elementTitle.textContent = name;
 
   // --------------------popup-image--------------------
-  function PopupImage() {
+  function openPopupImage() {
     openPopup(popupImage);
     popupPicture.src = elementImg.src;
     popupPicture.alt = elementTitle.textContent;
     popupText.textContent = elementTitle.textContent;
   }
-  elementImg.addEventListener('click', PopupImage);
+  elementImg.addEventListener('click', openPopupImage);
 
   //запускаем собитые по клику, лайкаем фото, при пофторном удаляем модификатор
   elementLike.addEventListener('click', (like) => {
