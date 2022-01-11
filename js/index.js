@@ -8,17 +8,36 @@ const profilePost = document.querySelector(".profile__post");
 // получаем input popup-edit
 const popupInputName = document.querySelector(".popup__input_text_name");
 const popupInputPost = document.querySelector(".popup__input_text_post");
+// --------------------popup-add--------------------
+const popupAdd = document.querySelector(".popup_add");
+const popupFormAdd = document.querySelector(".popup__form_add");
+const profileAdd = document.querySelector(".profile__add");
+const popupAddExit = document.querySelector(".popup__close_add");
+const popupSaveAdd = document.querySelector(".popup__save_add");
+const elementСard = document.querySelector(".element__card").content;
+// -------------------CARD-------------------
+const elementItem = document.querySelector('.element');
+// получаем input popup-add
+const popupInputLinkNname = document.querySelector('.popup__input_link_name');
+const popupInputLinkSrc = document.querySelector('.popup__input_link_src');
+// --------------------popup-image--------------------
+const popupImage = document.querySelector(".popup_image");
+const popupImageExit = document.querySelector(".popup__close_image");
+const popupPicture = document.querySelector(".popup__picture");
+const popupText = document.querySelector(".popup__text");
 
 
 //открытие popup
 function openPopup(popupOpen) {
   popupOpen.classList.add('popup_open');
+  document.addEventListener('keydown',  closePopubEsc);
 }
 
 
 //закрытие popup
 function exitModalPopup(popupExit) {
   popupExit.classList.remove('popup_open');
+  document.removeEventListener('keydown',  closePopubEsc);
 }
 
 
@@ -48,13 +67,7 @@ function openPopupEdit(evt){
 popupFormEdit.addEventListener('submit', openPopupEdit);
 
 
-// --------------------popup-add--------------------
-const popupAdd = document.querySelector(".popup_add");
-const popupFormAdd = document.querySelector(".popup__form_add");
-const profileAdd = document.querySelector(".profile__add");
-const popupAddExit = document.querySelector(".popup__close_add");
-const popupSaveAdd = document.querySelector(".popup__save_add");
-const elementСard = document.querySelector(".element__card").content;
+
 
 
 function openModalLink() {
@@ -77,23 +90,16 @@ function addPopupForm (evt) {
   //очищаем
   popupInputLinkNname.value = '';
   popupInputLinkSrc.value = '';
+
+  popupSaveAdd.setAttribute('disabled', true);
+  popupSaveAdd.classList.add("popup__save_inactive");
 }
 
 //при клике запускаем собития формы добавления
 popupFormAdd.addEventListener('submit', addPopupForm);
 
 
-// -------------------CARD-------------------
-const elementItem = document.querySelector('.element');
-// получаем input popup-add
-const popupInputLinkNname = document.querySelector('.popup__input_link_name');
-const popupInputLinkSrc = document.querySelector('.popup__input_link_src');
 
-// --------------------popup-image--------------------
-const popupImage = document.querySelector(".popup_image");
-const popupImageExit = document.querySelector(".popup__close_image");
-const popupPicture = document.querySelector(".popup__picture");
-const popupText = document.querySelector(".popup__text");
 
 function closePopupImg() {
 	exitModalPopup(popupImage);
@@ -179,4 +185,12 @@ window.onclick = function (event) {
     exitModalPopup(popupAdd);
     exitModalPopup(popupImage);
   }
+}
+
+//выход по клавише Esc
+function closePopubEsc(evt) {
+	if (evt.key === 'Escape') {
+		const popupOpen = document.querySelector('.popup_open');
+		exitModalPopup(popupOpen);
+	}
 }
