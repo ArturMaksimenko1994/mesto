@@ -48,14 +48,6 @@ function openPopupEdit(evt){
 popupFormEdit.addEventListener('submit', openPopupEdit);
 
 
-//выход по клику вне окна popup
-window.onclick = function (event) {
-  if (event.target === (popupEdit)) {
-    exitModalPopup(popupEdit);
-  }
-}
-
-
 // --------------------popup-add--------------------
 const popupAdd = document.querySelector(".popup_add");
 const popupFormAdd = document.querySelector(".popup__form_add");
@@ -180,3 +172,11 @@ function prependAddCard(name, link) {
   elementItem.prepend(card);// добавляем в начало блока elementItem методом prepend
 }
 
+//выход по клику вне окон popup
+window.onclick = function (event) {
+  if (event.target === popupEdit || event.target === popupAdd || event.target === popupImage) {
+    exitModalPopup(popupEdit);
+    exitModalPopup(popupAdd);
+    exitModalPopup(popupImage);
+  }
+}

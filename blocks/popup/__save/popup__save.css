@@ -13,6 +13,8 @@
 
 .popup__save:hover {
   opacity: 0.8;
+  background: #000000;
+  color: white;
 }
 
 @media screen and (max-width: 620px) {
