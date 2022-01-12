@@ -50,11 +50,11 @@
           <button class="popup__close" type="button"></button>
           <fieldset class="popup__input-container">
             <label class="popup__label" for="name">
-              <input id="popup__input-name name" class="popup__input popup__input_text_name" name="popupTextName" type="text"  value="" placeholder="введите имя ..." minlength="2" maxlength="40" required>
+              <input id="popup__input-name" class="popup__input popup__input_text_name" name="popupTextName" type="text"  value="" placeholder="введите имя ..." minlength="2" maxlength="40" required>
               <span class="popup__input-name-error popup__input-message"></span>
             </label>
             <label class="popup__label" for="post">
-              <input id="popup__input-post post" class="popup__input popup__input_text_post" name="popupTextPost" type="text"  value="" placeholder="введите должность ..." minlength="2" maxlength="200" required>
+              <input id="popup__input-post" class="popup__input popup__input_text_post" name="popupTextPost" type="text"  value="" placeholder="введите должность ..." minlength="2" maxlength="200" required>
               <span class="popup__input-post-error popup__input-message"></span>
             </label>
           </fieldset>
@@ -69,11 +69,11 @@
           <button class="popup__close popup__close_add" type="button"></button>
           <fieldset class="popup__input-container">
             <label class="popup__label" for="nameCard">
-              <input id="popup__input-place nameCard" class="popup__input popup__input_link_name" name="popupNameCard" type="text"  value="" placeholder="Название" minlength="2" maxlength="30" required>
+              <input id="popup__input-place" class="popup__input popup__input_link_name" name="popupNameCard" type="text"  value="" placeholder="Название" minlength="2" maxlength="30" required>
               <span class="popup__input-place-error popup__input-message"></span>
             </label>
             <label class="popup__label" for="linkCard">
-              <input id="popup__input-link linkCard" class="popup__input popup__input_link_src" name="popupLinkCard" type="url" value="" placeholder="Ссылка на картинку" required>
+              <input id="popup__input-link" class="popup__input popup__input_link_src" name="popupLinkCard" type="url" value="" placeholder="Ссылка на картинку" required>
               <span class="popup__input-link-error popup__input-message"></span>
             </label>
           </fieldset>
@@ -82,13 +82,11 @@
       </div>
     </div>
     <div class="popup popup_image">
-      <div class="popup__modal popup__modal_picture">
-        <button class="popup__close popup__close_image" type="button"></button>
         <figure class="popup__row">
+          <button class="popup__close popup__close_image" type="button"></button>
           <img class="popup__picture" src="#" alt="" >
           <figcaption class="popup__text"></figcaption>
         </figure>
-      </div>
     </div>
     <template class="element__card">
       <li class="element__item">

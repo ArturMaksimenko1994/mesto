@@ -32,7 +32,6 @@ const isValid = (formElement, inputElement, list ) => {
 const setEventListeners = (formElement, list) => {
   const inputList = Array.from(formElement.querySelectorAll(list.inputSelector));
   const buttonElement = formElement.querySelector(list.submitButtonSelector);
-  console.log(buttonElement)
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       isValid(formElement, inputElement, list)
