@@ -1,3 +1,7 @@
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
+import {initialCards} from './initialCards.js';
+
 // --------------------popup-edit--------------------
 const popupEdit = document.querySelector(".popup_edit");
 const profileEdit = document.querySelector(".profile__edit");
@@ -13,8 +17,7 @@ const popupAdd = document.querySelector(".popup_add");
 const popupFormAdd = document.querySelector(".popup__form_add");
 const profileAdd = document.querySelector(".profile__add");
 const popupAddExit = document.querySelector(".popup__close_add");
-const popupSaveAdd = document.querySelector(".popup__save_add");
-const elementСard = document.querySelector(".element__card").content;
+
 // -------------------CARD-------------------
 const elementItem = document.querySelector('.element');
 // получаем input popup-add
@@ -22,9 +25,29 @@ const popupInputLinkNname = document.querySelector('.popup__input_link_name');
 const popupInputLinkSrc = document.querySelector('.popup__input_link_src');
 // --------------------popup-image--------------------
 const popupImage = document.querySelector(".popup_image");
-const popupImageExit = document.querySelector(".popup__close_image");
-const popupPicture = document.querySelector(".popup__picture");
-const popupText = document.querySelector(".popup__text");
+const popupCloseImage = document.querySelector(".popup__close_image");
+// const popupPicture = document.querySelector(".popup__picture");
+
+const formList = document.querySelectorAll('.popup__form');
+
+const setValidation  = ({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save',
+  inactiveButtonClass: 'popup__save_inactive',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__input-message_active'
+});
+
+const formValidators = {};
+
+
+formList.forEach((forms) => {
+  const formValidator = new FormValidator(setValidation, forms);
+
+  formValidators[forms.name] = formValidator;
+  formValidators[forms.name].enableValidation();
+});
 
 
 //открытие popup
@@ -66,10 +89,6 @@ function openPopupEdit(evt){
 //при клике запускаем собития формы
 popupFormEdit.addEventListener('submit', openPopupEdit);
 
-
-
-
-
 function openModalLink() {
   openPopup(popupAdd);
 }
@@ -82,101 +101,12 @@ function openModalLinkExit() {
 popupAddExit.addEventListener('click', openModalLinkExit);
 
 
-// Обработчик «отправки» формы:
-function addPopupForm (evt) {
-  evt.preventDefault(); //отмена дефолтной отправки формы
-  prependAddCard(popupInputLinkNname.value, popupInputLinkSrc.value)
-  exitModalPopup(popupAdd);
-  //очищаем
-  popupInputLinkNname.value = '';
-  popupInputLinkSrc.value = '';
-
-  popupSaveAdd.setAttribute('disabled', true);
-  popupSaveAdd.classList.add("popup__save_inactive");
-}
-
-//при клике запускаем собития формы добавления
-popupFormAdd.addEventListener('submit', addPopupForm);
-
-
-
-
 function closePopupImg() {
 	exitModalPopup(popupImage);
 }
 
-popupImageExit.addEventListener('click', closePopupImg);
-//массив из спринта 6 карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+popupCloseImage.addEventListener('click', closePopupImg);
 
-// Создание 6 карточек:
-initialCards.forEach ((e) => {
-  prependAddCard(e.name, e.link)
-});
-
-function creatingСard(name, link) {
-  const elementClone = elementСard.querySelector(".element__item").cloneNode(true);
-  const elementImg = elementClone.querySelector(".element__img");
-  const elementTitle = elementClone.querySelector(".element__title");
-  const elementLike = elementClone.querySelector(".element__like");
-  const elementDelete = elementClone.querySelector(".element__delete");
-
-  elementImg.src = link;
-  elementImg.alt = name;
-  elementTitle.textContent = name;
-
-  // --------------------popup-image--------------------
-  function openPopupImage() {
-    openPopup(popupImage);
-    popupPicture.src = elementImg.src;
-    popupPicture.alt = elementTitle.textContent;
-    popupText.textContent = elementTitle.textContent;
-  }
-  elementImg.addEventListener('click', openPopupImage);
-
-  //запускаем собитые по клику, лайкаем фото, при пофторном удаляем модификатор
-  elementLike.addEventListener('click', (like) => {
-    like.target.classList.toggle('element__like_active');
-  });
-
-  //удаляем карточку при нажатии
-  elementDelete.addEventListener('click', (el) => {
-    el.currentTarget.closest('.element__item').remove();
-  });
-
-  return elementClone;
-}
-
-// Функция создание карточки
-function prependAddCard(name, link) {
-  const card = creatingСard(name, link);
-  elementItem.prepend(card);// добавляем в начало блока elementItem методом prepend
-}
 
 //выход по клику вне окон popup
 window.onclick = function (event) {
@@ -194,3 +124,45 @@ function closePopubEsc(evt) {
 		exitModalPopup(popupOpen);
 	}
 }
+
+
+// ---------------------------------------------------
+
+
+initialCards.forEach((item) => {
+  elementItem.prepend(createCard(item));
+});
+
+
+function createCard(item) {
+  const card = new Card(item);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
+function AddCardItem(item) {
+  elementItem.prepend(createCard(item));
+}
+
+// Обработчик «отправки» формы:
+function addPopupForm (evt) {
+  evt.preventDefault(); //отмена дефолтной отправки формы
+
+  AddCardItem({
+		name: popupInputLinkNname.value,
+		link: popupInputLinkSrc.value
+	});
+
+  exitModalPopup(popupAdd);
+
+  //очищаем
+  popupFormAdd.reset();
+  formValidators[popupFormAdd.name].resetValidation();
+
+}
+
+//при клике запускаем собития формы добавления карточки
+popupFormAdd.addEventListener('submit', addPopupForm);
+
+
+export {openPopup, popupImage};
