@@ -135,12 +135,12 @@ initialCards.forEach((item) => {
 
 
 function createCard(item) {
-  const card = new Card(item);
+  const card = new Card(item, '.element__card');
   const cardElement = card.generateCard();
   return cardElement;
 }
 
-function AddCardItem(item) {
+function addCardItem(item) {
   elementItem.prepend(createCard(item));
 }
 
@@ -148,7 +148,7 @@ function AddCardItem(item) {
 function addPopupForm (evt) {
   evt.preventDefault(); //отмена дефолтной отправки формы
 
-  AddCardItem({
+  addCardItem({
 		name: popupInputLinkNname.value,
 		link: popupInputLinkSrc.value
 	});

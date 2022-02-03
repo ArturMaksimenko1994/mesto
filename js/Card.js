@@ -1,7 +1,8 @@
 import {openPopup, popupImage} from './index.js';
 
 class Card {
-  constructor(data){
+  constructor(data, cardSelector){
+    this._cardSelector = cardSelector;
     this._name = data.name;
     this._link = data.link;
   }
@@ -10,7 +11,7 @@ class Card {
   _getTemplate(){
     // забираем разметку из HTML и клонируем элемент
     const cardElement = document
-    .querySelector('.element__card')
+    .querySelector(this._cardSelector)
     .content
     .querySelector('.element__item')
     .cloneNode(true);
@@ -50,6 +51,7 @@ class Card {
 
     // Добавим данные
     this._element.querySelector('.element__img').src = this._link;
+    this._element.querySelector('.element__img').alt = this._name;
     this._element.querySelector('.element__title').textContent = this._name;
 
     // Вернём элемент наружу
