@@ -8,19 +8,18 @@
   <meta name="keywords" content="html, css, js">
   <meta name="author" content="Артур Максименко">
 
-  <link rel="stylesheet" href="./page/index.css">
   <title>Место</title>
 
 </head>
 <body class="page">
     <header class="header">
-      <img class="header__logo" src="./images/header/logo.svg" alt="логотип сайт место">
+      <img class="header__logo" src="<%=require('./images/header/logo.svg')%>" alt="логотип сайт место">
     </header>
 
     <main class="content">
       <section class="profile">
         <div class="profile__info">
-          <img class="profile__avatar" src="./images/profile/image.png" alt="фотография пользователя">
+          <img class="profile__avatar" src="<%=require('./images/profile/image.png')%>" alt="фотография пользователя">
           <div class="profile__settings">
             <div class="profile__description">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -98,6 +97,5 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./js/index.js"></script>
 </body>
 </html>
