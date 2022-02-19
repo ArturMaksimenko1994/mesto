@@ -30,6 +30,10 @@ export default class PopupWithForm extends Popup {
 		});
 	}
 
+  submitHandler(){
+    return this._getInputValues()
+  }
+
 	// Очистка формы при закрытии попапа
 	close() {
 		super.close();

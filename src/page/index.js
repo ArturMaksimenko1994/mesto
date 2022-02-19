@@ -45,10 +45,12 @@ section.rendererItems();
 
 // Данные профиля
 const popupEdit = new PopupWithForm(
+
   '.popup_edit', () => {
+    let {popupTextName,popupTextPost} = popupEdit.submitHandler()
     userInfo.setUserInfo(
-      popupInputName.value,
-      popupInputPost.value
+      popupTextName,
+      popupTextPost
     );
     // Закрытие попапа:
 		popupEdit.close();
@@ -76,10 +78,11 @@ function createCard(name, link, templateSelector) {
 // Данные карточки
 const popupAdd = new PopupWithForm(
   '.popup_add', () => {
+    let {popupNameCard,popupLinkCard} = popupAdd.submitHandler()
     section.addItem(
       createCard(
-        popupInputLinkNname.value,
-        popupInputLinkSrc.value,
+        popupNameCard,
+        popupLinkCard,
         '.element__card'
       )
     );
