@@ -47,7 +47,7 @@ section.rendererItems();
 const popupEdit = new PopupWithForm(
 
   '.popup_edit', () => {
-    let {popupTextName,popupTextPost} = popupEdit.submitHandler()
+    const {popupTextName,popupTextPost} = popupEdit.submitHandler()
     userInfo.setUserInfo(
       popupTextName,
       popupTextPost
@@ -78,7 +78,7 @@ function createCard(name, link, templateSelector) {
 // Данные карточки
 const popupAdd = new PopupWithForm(
   '.popup_add', () => {
-    let {popupNameCard,popupLinkCard} = popupAdd.submitHandler()
+    const {popupNameCard,popupLinkCard} = popupAdd.submitHandler()
     section.addItem(
       createCard(
         popupNameCard,
