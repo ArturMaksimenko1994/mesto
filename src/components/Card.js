@@ -1,57 +1,91 @@
-// Класс  создания карточки
 export default class Card {
-	constructor(data, cardSelector, handleCardClick) {
-		this._title = data.name;
-		this._image = data.link;
-		this._cardSelector = cardSelector;
-		this._handleCardClick = handleCardClick;
-	}
-
-	// Создание element__card
-	_getTemplate() {
-    const cardElement = document
-      .querySelector(this._cardSelector)
-      .content
-      .querySelector('.element__item')
-      .cloneNode(true);
-
-    return cardElement;
+  constructor(data, cardSelector, id, api, popupWithConfirm, handleCardClick) {
+    this._title = data.name;
+    this._image = data.link;
+    this._likes = data.likes;
+    this._owner = data.owner;
+    this._cardId = data._id;
+    this._cardSelector = cardSelector;
+    this._myId = id;
+    this._api = api;
+    this._popupWithConfirm = popupWithConfirm;
+    this._handleCardClick = handleCardClick;
   }
 
-	// Ввод данных в карточку
-	generateCard() {
-		this._element = this._getTemplate();
+  _getTemplate() {
+    const cardElemnt = document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".element__item")
+      .cloneNode(true);
+    return cardElemnt;
+  }
 
-		this._elementImage = this._element.querySelector('.element__img');
-		this._elementTitle = this._element.querySelector('.element__title');
-		this._elementLike = this._element.querySelector('.element__like');
-		this._elementDelete = this._element.querySelector('.element__delete');
+  _like() {
+    if (!this._likeCard.classList.contains("element__like_active")) {
+      this._api
+        .putLike(this._cardId)
+        .then((res) => {
+          this._likeCard.classList.toggle("element__like_active");
+          this._countLikeElement.textContent = res.likes.length;
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    } else {
+      this._api
+        .deleteLike(this._cardId)
+        .then((res) => {
+          this._likeCard.classList.toggle("element__like_active");
+          this._countLikeElement.textContent = res.likes.length;
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
+  }
 
-		this._setEventListeners();
+  _removeCard(id) {
+    this._api
+      .deleteCard(id)
+      .then(() => {
+        this._element.remove();
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
 
-		this._elementTitle.textContent = this._title;
-		this._elementImage.src = this._image;
-		this._elementImage.alt = this._title;
+  generateCard() {
+    this._element = this._getTemplate();
+    this._cardImg = this._element.querySelector(".element__img");
+    this._likeCard = this._element.querySelector(".element__like");
+    this._deleteCard = this._element.querySelector(".element__delete");
+    this._element._cardId = this._cardId;
+    if (this._owner._id !== this._myId) this._deleteCard.remove();
+    this._countLikeElement = this._element.querySelector(".element__number");
+    this._countLikeElement.textContent = this._likes.length;
+    this._likes.forEach((element) => {
+      if (element._id == this._myId)
+        this._likeCard.classList.add("element__like_active");
+    });
+    this._setEventListeners();
+    this._element.querySelector(".element__title").textContent = this._title;
+    this._cardImg.src = this._image;
+    this._cardImg.alt = this._title;
+    return this._element;
+  }
 
-		return this._element;
-	}
+  _setEventListeners() {
+    this._cardImg.addEventListener("click", () => {
+      this._handleCardClick(this._title, this._image);
+    });
 
-	// События по клику
-	_setEventListeners() {
-		// Открытие попапа
-		this._elementImage.addEventListener('click', () => {
-			this._handleCardClick(this._image, this._title);
-		});
+    this._likeCard.addEventListener("click", () => {
+      this._like();
+    });
 
-		// Добавление активного лайка
-		this._elementLike.addEventListener('click', (evt) => {
-			evt.target.classList.toggle('element__like_active');
-		});
-
-		// Удаление карточки
-		this._elementDelete.addEventListener('click', () => {
-			this._element.remove();
-			this._element = null;
-		});
-	}
+    this._deleteCard.addEventListener("click", () => {
+      this._popupWithConfirm.open(this._element);
+    });
+  }
 }

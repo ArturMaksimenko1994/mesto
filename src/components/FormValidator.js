@@ -1,4 +1,4 @@
-// Валидация всех форм
+// Валидация форм:
 export default class FormValidator {
   constructor(list, formSelector) {
     this._formSelector = formSelector;
@@ -9,7 +9,7 @@ export default class FormValidator {
     this._errorClass = list.errorClass;
   }
 
-  //Добавляет класс с ошибкой
+  // метод, который добавляет класс с ошибкой
   _showInputError(inputElement) {
     this._errorElement = this._formSelector.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
@@ -17,7 +17,7 @@ export default class FormValidator {
     this._errorElement.textContent = inputElement.validationMessage;
   }
 
-  //Удаляет класс с ошибкой
+  // Метод, который удаляет класс с ошибкой
   _hideInputError(inputElement) {
     this._errorElement = this._formSelector.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
@@ -25,14 +25,14 @@ export default class FormValidator {
     this._errorElement.textContent = '';
   }
 
-  //Проверка валидности input
+  // метод проверки валидности input
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
 
-  //Метод принимает массив полей ввода и элемент кнопки, состояние которой нужно менять
+  //метод принимает массив полей ввода и элемент кнопки, состояние которой нужно менять
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._buttonElement.setAttribute('disabled', true);
@@ -43,7 +43,7 @@ export default class FormValidator {
     }
   }
 
-  // Очистка формы
+  // Очистка формы:
   resetValidation() {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
@@ -61,7 +61,7 @@ export default class FormValidator {
     }
   }
 
-  // Принимает стили исходя из условий
+  // Исходя из условий применяются те или ины стили:
   _setEventListeners() {
     this._inputList = Array.from(this._formSelector.querySelectorAll(this._inputSelector));
     this._buttonElement = this._formSelector.querySelector(this._submitButtonSelector);
@@ -73,11 +73,11 @@ export default class FormValidator {
     });
   }
 
-  // Отправка формы
+  // Отправка формы:
   enableValidation() {
     this._setEventListeners();
   }
 
 }
 
-
+export {FormValidator};

@@ -1,67 +1,31 @@
-//массив карточек
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
-// --------------------popup-edit--------------------
-// export const popupEdit = document.querySelector(".popup_edit");
 export const profileEdit = document.querySelector(".profile__edit");
-export const popupClose = document.querySelector(".popup__close");
+export const profileImg = document.querySelector(".profile__avatar");
+
 export const popupFormEdit = document.querySelector(".popup__form_edit");
-export const profileName = document.querySelector(".profile__name");
-export const profilePost = document.querySelector(".profile__post");
-// получаем input popup-edit
-export const popupInputName = document.querySelector(".popup__input_text_name");
-export const popupInputPost = document.querySelector(".popup__input_text_post");
-// --------------------popup-add--------------------
-export const popupAdd = document.querySelector(".popup_add");
-export const popupFormAdd = document.querySelector(".popup__form_add");
 export const profileAdd = document.querySelector(".profile__add");
-export const popupAddExit = document.querySelector(".popup__close_add");
+//input add
+export const addInputName = document.querySelector(".popup__input_link_name");
+export const addInputLink = document.querySelector(".popup__input_link_src");
 
-// -------------------CARD-------------------
-export const elementItem = document.querySelector('.element');
-// получаем input popup-add
-export const popupInputLinkNname = document.querySelector('.popup__input_link_name');
-export const popupInputLinkSrc = document.querySelector('.popup__input_link_src');
-// --------------------popup-image--------------------
-export const popupImage = document.querySelector(".popup_image");
-export const popupCloseImage = document.querySelector(".popup__close_image");
-// const popupPicture = document.querySelector(".popup__picture");
 
-export const formList = document.querySelectorAll('.popup__form');
+export const popupFormAdd = document.querySelector(".popup__form_add");
 
-export const setValidation  = ({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save',
-  inactiveButtonClass: 'popup__save_inactive',
-  inputErrorClass: 'popup__input_error',
-  errorClass: 'popup__input-message_active'
-});
+//input edit
+export const userNameInput = document.querySelector(".popup__input_text_name");
+export const userJobInput = document.querySelector(".popup__input_text_post");
 
+//все формы
+export const popupForm = document.querySelectorAll(".popup__form");
+
+export const deliteModal = document.querySelector(".popup_delete");
+export const popupSaveDelete = document.querySelector(".popup__save_delete");
+
+export const popupSaveAvatar = document.querySelector(".popup__save_avatar");
+
+export const popupFormAvatar = document.querySelector(".popup__form_avatar");
+export const profileIcons = document.querySelector(".profile__icons");
+export const popupSaveEdit = document.querySelector(".popup__save_edit");
+export const popupSaveAdd = document.querySelector(".popup__save_add");
 
 export const formValidators = {};
