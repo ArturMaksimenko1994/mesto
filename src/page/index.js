@@ -14,7 +14,7 @@ import {
   popupFormAdd,
   userNameInput,
   userJobInput,
-  popupForm,
+  popupForms,
   formValidators,
   profileIcons,
   popupSaveEdit,
@@ -137,7 +137,7 @@ const addPopupWithForm = new PopupWithForm(
   (data) => {
     popupSaveAdd.textContent = "Создаю...";
     api
-      .postCard(data.popupInputpLace, data.popupInputLink)
+      .postCard(data.popupInputPlace, data.popupInputLink)
       .then((res) => {
         const card = createCard(
           res,
@@ -208,7 +208,7 @@ profileIcons.addEventListener("click", () => {
 
 
 // валидация всех форм
-popupForm.forEach((formElement) => {
+popupForms.forEach((formElement) => {
   const formValidator = new FormValidator(
     {
       formSelector: '.popup__form',

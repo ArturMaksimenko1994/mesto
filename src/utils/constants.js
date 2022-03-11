@@ -16,7 +16,7 @@ export const userNameInput = document.querySelector(".popup__input_text_name");
 export const userJobInput = document.querySelector(".popup__input_text_post");
 
 //все формы
-export const popupForm = document.querySelectorAll(".popup__form");
+export const popupForms = document.querySelectorAll(".popup__form");
 
 export const deliteModal = document.querySelector(".popup_delete");
 export const popupSaveDelete = document.querySelector(".popup__save_delete");
